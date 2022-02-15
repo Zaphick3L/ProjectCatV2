@@ -1,6 +1,7 @@
 --[[
 Updates:
 
+1.1.2 - Added Anti Tool, Changed default align values.
 1.1.1 - Credits time 2 > 1.5, Removed Useless global.
 1.1.0 - Added Credits + Custom Velocity, Bugfxi with bullet + Jump support
 1.0.0 - Released.
@@ -39,7 +40,7 @@ function Attach(P0,P1,Position,Orientation)
 	end
    local AP = Instance.new("AlignPosition")
    AP.Parent = P1
-   AP.MaxForce = 76007600
+   AP.MaxForce = 700000000
    AP.Responsiveness = 200
    AP.MaxVelocity = math.huge
    AP.ApplyAtCenterOfMass = false
@@ -49,7 +50,7 @@ function Attach(P0,P1,Position,Orientation)
    
    local AO = Instance.new("AlignOrientation")
    AO.Parent = P0
-   AO.MaxTorque = 76007600
+   AO.MaxTorque = 700000000
    AO.Responsiveness = 200
    AO.MaxAngularVelocity = math.huge
    AO.RigidityEnabled = false
@@ -137,6 +138,11 @@ Humanoid.Died:Connect(function()
 	TriggerNoclip:Disconnect()
 	TriggerNetless:Disconnect()
 end)
+
+Character.ChildAdded:Connect(function(tool)
+    if tool:IsA("Tool") then tool:Destroy() end
+end)
+
 if Humanoid.RigType == Enum.HumanoidRigType.R6 then
 	Character.HumanoidRootPart:Destroy()
 	Attach(Character.Torso,Clone.Torso)
@@ -146,7 +152,8 @@ if Humanoid.RigType == Enum.HumanoidRigType.R6 then
 	Attach(Character["Left Leg"],Clone["Left Leg"])
 	if _G.Bullet == true then
 		if not Character:FindFirstChild("Pal Hair") then
-			
+			print("Required Pal Hair!")
+            return
 		end
 		Humanoid:ChangeState("Physics")
 		local faker = Character:FindFirstChild("Pal Hair").Handle
