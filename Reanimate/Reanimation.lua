@@ -1,6 +1,7 @@
 --[[
 Updates:
 
+1.2.3 - Fixed Camera.
 1.1.2 - Added Anti Tool, Changed default align values.
 1.1.1 - Credits time 2 > 1.5, Removed Useless global.
 1.1.0 - Added Credits + Custom Velocity, Bugfxi with bullet + Jump support
@@ -186,8 +187,11 @@ else
 	end
     Character.Animate.Disabled = true
 end
-
+if workspace:FindFirstChildOfClass("Camera") then
+	workspace.Camera.CameraSubject = CloneHumanoid
+end
 local Credits = Instance.new("Message", workspace)
 Credits.Text = "Reanimation by Gelatek! R15-To-R6 Animate by ProductionTakeOne!"
 wait(1.5)
 Credits:Destroy()
+
