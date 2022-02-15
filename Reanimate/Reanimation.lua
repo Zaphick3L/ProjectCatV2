@@ -1,7 +1,8 @@
 --[[
 Updates:
 
-1.1.0 - Added Credits + Custom Velocity, Bugfix with bullet + Jump support
+1.1.1 - Credits time 2 > 1.5, Removed Useless global.
+1.1.0 - Added Credits + Custom Velocity, Bugfxi with bullet + Jump support
 1.0.0 - Released.
 
 
@@ -27,7 +28,6 @@ NoNetless: Done
 if not _G.Velocity then _G.Velocity = Vector3.new(0,-36.5,0) end
 if not _G.Fling then _G.Fling = false end
 if not _G.Bullet then _G.Bullet = false end
-if not _G.TorsoCollide then _G.TorsoCollide = false end
 if not _G.RigEnabled then _G.RigEnabled = false end
 if not _G.Net then _G.Net = false end
 if not _G.NoNetless then _G.NoNetless = false end
@@ -90,18 +90,8 @@ Clone.HumanoidRootPart.CFrame = Character.HumanoidRootPart.CFrame
 local TriggerNoclip
 local TriggerNetless
 function Noclip()
-	for _,v in pairs(Clone:GetDescendants()) do
+	for _,v in pairs(Character:GetDescendants()) do
 		if v:IsA("BasePart") then v.CanCollide = false end
-	end
-	if _G.TorsoCollide == false then
-		for _,v in pairs(Character:GetDescendants()) do
-			if v:IsA("BasePart") or v:IsA("MeshPart") then v.CanCollide = false end
-		end
-	elseif _G.TorsoCollide == true then
-		for _,v in pairs(Character:GetChildren()) do
-			if v:IsA("BasePart") or v:IsA("MeshPart") and v.Name ~= "Torso" and v.Name ~= "Head" and v.Name ~= "UpperTorso" then 
-			v.CanCollide = false end
-		end
 	end
 
 	for _,v in pairs(Humanoid:GetPlayingAnimationTracks()) do
@@ -192,5 +182,5 @@ end
 
 local Credits = Instance.new("Message", workspace)
 Credits.Text = "Reanimation by Gelatek! R15-To-R6 Animate by ProductionTakeOne!"
-wait(2)
+wait(1.5)
 Credits:Destroy()
