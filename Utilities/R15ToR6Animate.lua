@@ -1,6 +1,5 @@
--- this is from productions take one. thanks for him for this
+-- update: found the original r15 to r6.
 local Figure = game.Players.LocalPlayer.Character.GelatekReanimate
-local Animatee = Figure.Animate
 local Torso = Figure:WaitForChild("Torso")
 local RightShoulder = Torso:WaitForChild("Right Shoulder")
 local LeftShoulder = Torso:WaitForChild("Left Shoulder")
@@ -94,7 +93,7 @@ function configureAnimationSet(name, fileList)
 	animTable[name].connections = {}
 
 	-- check for config values
-	local config = Animatee:FindFirstChild(name)
+	local config = script:FindFirstChild(name)
 	if (config ~= nil) then
 --		print("Loading anims " .. name)
 		table.insert(animTable[name].connections, config.ChildAdded:connect(function(child) configureAnimationSet(name, fileList) end))
@@ -142,8 +141,8 @@ function scriptChildModified(child)
 	end	
 end
 
-Animatee.ChildAdded:connect(scriptChildModified)
-Animatee.ChildRemoved:connect(scriptChildModified)
+script.ChildAdded:connect(scriptChildModified)
+script.ChildRemoved:connect(scriptChildModified)
 
 
 for name, fileList in pairs(animNames) do 
@@ -536,6 +535,5 @@ while Figure.Parent ~= nil do
 	local _, time = wait(0.1)
 	move(time)
 end
-
 
 
