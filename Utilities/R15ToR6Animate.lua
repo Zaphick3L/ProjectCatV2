@@ -1,4 +1,4 @@
--- update: found the original r15 to r6.
+-- update: found the original r6 animate
 local Figure = game.Players.LocalPlayer.Character.GelatekReanimate
 local Torso = Figure:WaitForChild("Torso")
 local RightShoulder = Torso:WaitForChild("Right Shoulder")
