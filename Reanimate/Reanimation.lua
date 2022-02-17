@@ -1,5 +1,7 @@
 --[[
 -----------------//// Updates:
+1.3.1:
+[ * ] BugFix with AlignPosition Parent
 1.3:
 [ + ] New Animate Script for Animations.
 [ - ] Removed ProductionTakeOne from credits (I was using his Animate back then.)
@@ -41,7 +43,7 @@ function Attach(P0,P1,Position,Orientation)
         if v:IsA("Motor6D") and v.Name ~= "Neck" then v:Destroy() end
 	end
    local AP = Instance.new("AlignPosition")
-   AP.Parent = P1
+   AP.Parent = P0
    AP.MaxForce = 9e9
    AP.Responsiveness = 200
    AP.MaxVelocity = math.huge
