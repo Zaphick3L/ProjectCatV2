@@ -1,5 +1,8 @@
 --[[
 -----------------//// Updates:
+1.3.2:
+[ + ] Added Velocity to Accessories.
+[ + ] Anti-Run Trigger if you have already ran the reanimate.
 1.3.1:
 [ * ] BugFix with AlignPosition Parent
 1.3:
@@ -30,6 +33,14 @@
 Credits:
 Gelatek (Everything)
 ]]--
+
+if game.Players.LocalPlayer.Character:FindFirstChild("GelatekReanimate") then
+	local CreditsFail = Instance.new("Message", workspace)
+	CreditsFail.Text = "You have been already Reanimated!, Reset to Un-Reanimate."
+	wait(1.5)
+	CreditsFail:Destroy()
+	return
+end
 if not _G.Velocity then _G.Velocity = Vector3.new(0,-36.5,0) end
 if not _G.Fling then _G.Fling = false end
 if not _G.Bullet then _G.Bullet = false end
@@ -118,8 +129,14 @@ function Netless()
 			elseif _G.NoNetless == true and _G.Fling == true then
 				Torso.RotVelocity = Vector3.new(4000,4000,4000)
 			end
-		end	
+	elseif v:IsA("Accessory") then
+		if _G.NoNetless == false then
+			v.Handle.Velocity = _G.Velocity or Vector3.new(25.05,25.05,25.05)
+		elseif _G.NoNetless == true then
+
+		end
 	end
+			end	
 		pcall(function()
 		CloneHumanoid:Move(Humanoid.MoveDirection, false)
 		if Humanoid.RigType == Enum.HumanoidRigType.R6 then
@@ -199,7 +216,7 @@ else
 end
 
 local Credits = Instance.new("Message", workspace)
-Credits.Text = "Reanimation by Gelatek! Current Version: 1.3"
+Credits.Text = "Reanimation by Gelatek! Current Version: 1.3.2"
 wait(1.5)
 Credits:Destroy()
 if _G.RemoveAnims == false then
