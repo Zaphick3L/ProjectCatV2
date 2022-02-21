@@ -264,7 +264,7 @@ function Library:Create(name)
 			GetHats.TextSize = 13.000
 			GetHats.MouseButton1Click:Connect(function()
 				pcall(function()
-					setclipboard(tostring(hatid))
+					setclipboard(hatid)
 					confirm()
 				end)
 			end)
